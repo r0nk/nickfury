@@ -1,1 +1,1 @@
-NICK FURY is a chat bot for managing tasks.
+NICK FURY is a Discord chat bot for managing tasks.
