@@ -1,4 +1,8 @@
+import pickle
+import os
 from typing import Dict
+from time import strftime
+from dateutil.parser import parse
 
 TICKET_OPEN, TICKET_CLOSED = True, False
 
@@ -53,8 +57,22 @@ class TicketDict():
 
     # Save tickets to disk for future use
     def save_tickets(self):
-        pass
+        fn = self.change_str("db\\" + strftime("%c"))
+        pickle.dump(self, open(fn, "wb"))
+        return
 
-    # Utility function for when saved tickets are implemented
-    def determine_counter(self):
-        pass
+    # Reload tickets from last saved instance
+    def reload_tickets(self) -> str:
+        holder = parse("Fri Mar 27 16:23:01 2015") # Arbitrary holder, needs to be refactored...
+        for fn in os.listdir(".\\db"):
+            cmp = parse(self.restore_str(fn))
+            if cmp > holder:
+                holder = cmp
+        return holder
+        
+    #UTIL FUNC
+    def change_str(self, fn : str) -> str:
+        return fn.replace(" ", "_").replace(":", "-")
+
+    def restore_str(self, fn : str) -> str:
+        return fn.replace("_", " ").replace("-", ":")

@@ -1,7 +1,6 @@
 import discord
-from discord.ext import commands
-from typing import List
 import utils
+from discord.ext import commands
 
 description = '...'
 intents = discord.Intents.default()
@@ -39,8 +38,13 @@ async def save_tickets(ctx):
     await ctx.send("Tickets are now backed up.")
 
 @nickfury.command()
+async def reload_tickets(ctx):
+    ret = TicketHandler.reload_tickets()
+    await ctx.send(f"Tickets are rolled back to last save at {ret}")
+
+@nickfury.command()
 async def shutdown(ctx):
     exit()
 
 
-nickfury.run('insert_your_token')
+nickfury.run('ODUwNTc3Mzk2NjcwOTIyODUw.Gcu_1-.NJxCR8WK8OCVdtvSv5eee4Z1vBfXM9kUmOJu1Q')
