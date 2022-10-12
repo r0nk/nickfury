@@ -8,7 +8,6 @@ intents = discord.Intents.default()
 nickfury = commands.Bot(command_prefix='?', description=description, intents=intents)
 TicketHandler = utils.TicketDict(deletion_after_close=False)
 
-
 @nickfury.event
 async def on_ready():
     print("The bot is now online.")
@@ -42,5 +41,4 @@ async def save_tickets(ctx):
 async def shutdown(ctx):
     exit()
 
-
-nickfury.run('insert_your_token')
+nickfury.run(open('token.txt','r').readlines()[0])
