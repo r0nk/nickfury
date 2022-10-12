@@ -4,8 +4,8 @@ from typing import List
 import utils
 
 description = '...'
-intents = discord.Intents.default()
-nickfury = commands.Bot(command_prefix='?', description=description, intents=intents)
+intents = discord.Intents.all()
+nickfury = commands.Bot(command_prefix='/', description=description, intents=intents)
 TicketHandler = utils.TicketDict(deletion_after_close=False)
 
 @nickfury.event
