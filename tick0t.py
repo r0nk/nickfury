@@ -31,9 +31,9 @@ async def display_ticket(ctx, index:int):
     fOutput = TicketHandler.display_ticket(index)
     await ctx.send(fOutput)
 
-@tick0t.command(name="query_tickets",description="List Active Tickets")
-async def query_tickets(ctx):
-    fOutput = TicketHandler.query_tickets()
+@tick0t.command(name="list_tickets",description="List Active Tickets")
+async def list_tickets(ctx):
+    fOutput = TicketHandler.list_tickets()
     await ctx.send(fOutput)
 
 @tick0t.command(name="save_tickets",description="Make a backup of tickets")
