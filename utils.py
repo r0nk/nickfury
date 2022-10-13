@@ -37,16 +37,22 @@ class TicketDict():
     # Implement error checking -- The ticket index could not be valid.
     # Pretty print of a specific ticket...
     def display_ticket(self, index) -> str:
+        #Simple error check, if index is greater than total tickets, then it's invalid.
+        if(index > self._counter):
+            return f''' 
+            ```
+            Ticket number : {index} is invalid```
+            '''
         return f''' 
-    ```
-    Ticket number : {index}
+        ```
+        Ticket number : {index}
 
-    The contents of the ticket : {self._tickets[index].contents}
+        The contents of the ticket : {self._tickets[index].contents}
 
-    The author of the ticket : {self._tickets[index].author}
+        The author of the ticket : {self._tickets[index].author}
 
-    The status of the ticket : {self.match_status(self._tickets[index].status)}```
-    '''
+        The status of the ticket : {self.match_status(self._tickets[index].status)}```
+        '''
 
     # Pretty print of currently open tickets, limiting the size of the ticket contents for a preview.
     def query_tickets(self) -> str:
