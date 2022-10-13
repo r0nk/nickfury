@@ -47,4 +47,4 @@ async def shutdown(ctx):
     exit()
 
 
-nickfury.run('ODUwNTc3Mzk2NjcwOTIyODUw.Gcu_1-.NJxCR8WK8OCVdtvSv5eee4Z1vBfXM9kUmOJu1Q')
+nickfury.run('')

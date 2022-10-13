@@ -34,6 +34,7 @@ class TicketDict():
             del self._tickets[ticket_num]
         return
 
+    # Implement error checking -- The ticket index could not be valid.
     # Pretty print of a specific ticket...
     def display_ticket(self, index) -> str:
         return f''' 
@@ -44,7 +45,7 @@ class TicketDict():
 
     The author of the ticket : {self._tickets[index].author}
 
-    The status of the ticket : {self._tickets[index].status}```
+    The status of the ticket : {self.match_status(self._tickets[index].status)}```
     '''
 
     # Pretty print of currently open tickets, limiting the size of the ticket contents for a preview.
@@ -63,16 +64,45 @@ class TicketDict():
 
     # Reload tickets from last saved instance
     def reload_tickets(self) -> str:
-        holder = parse("Fri Mar 27 16:23:01 2015") # Arbitrary holder, needs to be refactored...
-        for fn in os.listdir(".\\db"):
-            cmp = parse(self.restore_str(fn))
-            if cmp > holder:
-                holder = cmp
+        holder, filename = self.determine_latest()
+        assert holder != None # Change and handle this gracefully...
+        assert filename != None
+        try:
+            lTicketDict = pickle.load(open("db\\" + filename, "rb"))
+        except EOFError:
+            print("There was an error when reloading tickets...")
+        self._tickets = lTicketDict._tickets
+        self._counter = lTicketDict._counter
+        self._delete = lTicketDict._delete
         return holder
-        
-    #UTIL FUNC
+
+    # Function for reload_tickets
+    def determine_latest(self):
+        holder, filename = None, None
+        for fn in os.listdir(".\\db"):
+            if holder == None:
+                holder = parse(self.restore_str(fn))
+                filename = fn
+            elif parse(self.restore_str(fn)) > holder:
+                holder = parse(self.restore_str(fn))
+                filename = fn
+            else:
+                raise Exception
+        return holder, filename
+
+
+    #UTIL FUNCS
     def change_str(self, fn : str) -> str:
         return fn.replace(" ", "_").replace(":", "-")
 
     def restore_str(self, fn : str) -> str:
         return fn.replace("_", " ").replace("-", ":")
+
+    def match_status(self, status : bool) -> str:
+        match status:
+            case True:
+                return "OPEN"
+            case False:
+                return "CLOSED"
+            case _:
+                raise Exception
