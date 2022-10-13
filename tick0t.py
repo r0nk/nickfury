@@ -5,10 +5,8 @@ token = open('token.txt','r').readlines()[0].strip('\n')
 tick0t = interactions.Client(token=token)
 TicketHandler = utils.TicketDict(deletion_after_close=False)
 
-@tick0t.event
-async def on_ready():
-    print("The bot is now online.")
-
+#Load all the commands and information for Discord
+#-------------------------------------------------------------------------------
 @tick0t.command(name="create_ticket",description="create a ticket",
         options = [
         interactions.Option(
@@ -48,11 +46,14 @@ async def reload_tickets(ctx):
     ret = TicketHandler.reload_tickets()
     await ctx.send(f"Tickets are rolled back to last save at {ret}")
 
-@tick0t.command(
-        name="show_help",
-    description="Display a help message",
-)
+@tick0t.command(name="show_help", description="Display a help message")
 async def show_help(ctx: interactions.CommandContext):
-    await ctx.send("Hello world! ")
+    await ctx.send("Hello world! Tick0t is a Discord bot designed to help server admins organize any issues that arise in their server.\nIf you need help with commands, click here. ")
+
+#-------------------------------------------------------------------------------
+
+@tick0t.event
+async def on_ready():
+    print("The bot is now online.")
 
 tick0t.start()
