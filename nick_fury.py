@@ -46,5 +46,4 @@ async def reload_tickets(ctx):
 async def shutdown(ctx):
     exit()
 
-
 nickfury.run('')
