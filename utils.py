@@ -47,11 +47,11 @@ class TicketDict():
         ```
         Ticket number : {index}
 
-        The contents of the ticket : {self._tickets[index].contents}
+        Author : {self._tickets[index].author}
 
-        The author of the ticket : {self._tickets[index].author}
+        Content : {self._tickets[index].contents}
 
-        The status of the ticket : {self.match_status(self._tickets[index].status)}```
+        Ticket status : {self.match_status(self._tickets[index].status)}```
         '''
 
     # Pretty print of currently open tickets, limiting the size of the ticket contents for a preview.
