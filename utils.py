@@ -38,7 +38,7 @@ class TicketDict():
     # Pretty print of a specific ticket...
     def display_ticket(self, index) -> str:
         #Simple error check, if index is greater than total tickets, then it's invalid.
-        if(index > self._counter):
+        if(index > self._counter or index < 0):
             return f''' 
             ```
             Ticket number : {index} is invalid```
