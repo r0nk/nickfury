@@ -1,7 +1,6 @@
 import discord
-from discord.ext import commands
-from typing import List
 import utils
+from discord.ext import commands
 
 description = '...'
 intents = discord.Intents.all()
@@ -36,6 +35,11 @@ async def query_tickets(ctx):
 async def save_tickets(ctx):
     TicketHandler.save_tickets()
     await ctx.send("Tickets are now backed up.")
+
+@nickfury.command()
+async def reload_tickets(ctx):
+    ret = TicketHandler.reload_tickets()
+    await ctx.send(f"Tickets are rolled back to last save at {ret}")
 
 @nickfury.command()
 async def shutdown(ctx):
