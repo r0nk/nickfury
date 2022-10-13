@@ -19,12 +19,12 @@ TicketHandler = utils.TicketDict(deletion_after_close=False)
 )
 async def create_ticket(ctx,name:str):
     TicketHandler.add_ticket(utils.Ticket(name, ctx.author.name))
-    await ctx.send(f"Your ticket has been registered with the ticket number {TicketHandler._counter}.")
+    await ctx.send(f"Your ticket🎫 has been registered with the ticket🎫 number {TicketHandler._counter}.")
 
 @tick0t.command(name="close_ticket",description="Close a ticket")
 async def close_ticket(ctx, index:int):
     TicketHandler.close_ticket(index)
-    await ctx.send("The ticket has been closed.")
+    await ctx.send("The ticket🎫 has been closed.")
 
 @tick0t.command(name="display_ticket",description="Display a chosen ticket.")
 async def display_ticket(ctx, index:int):
@@ -48,7 +48,8 @@ async def reload_tickets(ctx):
 
 @tick0t.command(name="show_help", description="Display a help message")
 async def show_help(ctx: interactions.CommandContext):
-    await ctx.send("Hello world! Tick0t is a Discord bot designed to help server admins organize any issues that arise in their server.\nIf you need help with commands, click here. ")
+    await ctx.send("Hello world! Tick0t is a Discord bot designed to help server admins organize any issues that arise in their server.\
+    \nIf you need help with commands, click here. ")
 
 #-------------------------------------------------------------------------------
 

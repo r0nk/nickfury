@@ -39,16 +39,16 @@ class TicketDict():
     def display_ticket(self, index) -> str:
         #Simple error check, if index is greater than total tickets, then it's invalid.
         if(index > self._counter or index < 0):
-            return f'''```Ticket number : {index} is invalid```'''
+            return f'''```Ticket🎫 number : {index} is invalid```'''
         return f''' 
                 ```
-                Ticket number : {index}
+                Ticket🎫 number : {index}
 
                 Author : {self._tickets[index].author}
 
                 Content : {self._tickets[index].contents}
 
-                Ticket status : {self.match_status(self._tickets[index].status)}
+                Ticket🎫 status : {self.match_status(self._tickets[index].status)}
                 ```
                 '''
 
@@ -57,7 +57,7 @@ class TicketDict():
         fOutput = ""
         for ticket in self._tickets.items():
             if ticket[1].status == TICKET_OPEN:
-                fOutput += f"Ticket #{ticket[1].number} authored by {ticket[1].author} : { ticket[1].contents[:50] } \n"
+                fOutput += f"🎫 #{ticket[1].number} authored by {ticket[1].author} : { ticket[1].contents[:50] } \n"
         return fOutput
 
     # Save tickets to disk for future use
