@@ -28,8 +28,26 @@ async def close_ticket(ctx, index:int):
 
 @tick0t.command(name="display_ticket",description="Display a chosen ticket.")
 async def display_ticket(ctx, index:int):
-    fOutput = TicketHandler.display_ticket(index)
-    await ctx.send(fOutput)
+    content = TicketHandler.display_ticket(index)
+    ticketNum = TicketHandler._tickets[index].getNumber()
+    embeds = [
+                {
+                "type": "rich",
+                "title": "Ticket🎫 Title",
+                "description": "Ticket🎫 description",
+                "color": 0x00FFFF,
+                "author": {
+                    "name": "Author",
+                    "url": "URL of Author",
+                    "icon_url": "https://cdn.discordapp.com/avatars/1029789818185584662/8d8b9e1c35c520eefa6e332dfcbb5587.webp?size=160"
+                },
+                "footer": {
+                    "text": '''(f"Tick0t 🎫 #{ticketNum})"''',
+                    "icon_url": "https://cdn.discordapp.com/avatars/1029789818185584662/8d8b9e1c35c520eefa6e332dfcbb5587.webp?size=160"
+                    }
+                }
+            ]
+    await ctx.send(content, embeds)
 
 @tick0t.command(name="list_tickets",description="List Active Tickets")
 async def list_tickets(ctx):

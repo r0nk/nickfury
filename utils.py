@@ -13,6 +13,9 @@ class Ticket():
         self.status : bool = TICKET_OPEN
         self.author = ticket_author
 
+    def getNumber(self):
+        return self.number
+
 class TicketDict():
     def __init__(self, deletion_after_close=False):
         self._tickets : Dict[int, Ticket] = {}
