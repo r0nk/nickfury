@@ -13,6 +13,9 @@ class Ticket():
         self.status : bool = TICKET_OPEN
         self.author = ticket_author
 
+    def getNumber(self):
+        return self.number
+
 class TicketDict():
     def __init__(self, deletion_after_close=False):
         self._tickets : Dict[int, Ticket] = {}
@@ -37,23 +40,27 @@ class TicketDict():
     # Implement error checking -- The ticket index could not be valid.
     # Pretty print of a specific ticket...
     def display_ticket(self, index) -> str:
+        #Simple error check, if index is greater than total tickets, then it's invalid.
+        if(index > self._counter or index < 0):
+            return f'''```Ticket🎫 number : {index} is invalid```'''
         return f''' 
-    ```
-    Ticket number : {index}
+                ```
+                Ticket🎫 number : {index}
 
-    The contents of the ticket : {self._tickets[index].contents}
+                Author : {self._tickets[index].author}
 
-    The author of the ticket : {self._tickets[index].author}
+                Content : {self._tickets[index].contents}
 
-    The status of the ticket : {self.match_status(self._tickets[index].status)}```
-    '''
+                Ticket🎫 status : {self.match_status(self._tickets[index].status)}
+                ```
+                '''
 
     # Pretty print of currently open tickets, limiting the size of the ticket contents for a preview.
-    def query_tickets(self) -> str:
+    def list_tickets(self) -> str:
         fOutput = ""
         for ticket in self._tickets.items():
             if ticket[1].status == TICKET_OPEN:
-                fOutput += f"Ticket #{ticket[1].number} authored by {ticket[1].author} : { ticket[1].contents[:50] } \n"
+                fOutput += f"🎫 #{ticket[1].number} authored by {ticket[1].author} : { ticket[1].contents[:50] } \n"
         return fOutput
 
     # Save tickets to disk for future use
