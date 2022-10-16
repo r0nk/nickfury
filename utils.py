@@ -116,7 +116,7 @@ class TicketDict():
         #now set the current channel ID as a persistent variable saved for each server
         self._admin_channel = ctx.channel_id
         print(f"Admin channel set as #<{self._admin_channel}>")
-        return match_embed(EmbedType.CHANNEL_SET)
+        return match_embed(embed= EmbedType.CHANNEL_SET, number= self._admin_channel)
 
 
 #UTIL FUNCS
@@ -176,7 +176,7 @@ def match_embed(embed : EmbedType, content : str=None, number : int=None, author
             return cEmbed
         case EmbedType.CHANNEL_SET:
             cEmbed = EmbedType.CHANNEL_SET.value.copy()
-            #cEmbed.description = f"#<{self._admin-channel}> will now display any tickets created (once this functionality is implemented)."
+            cEmbed.description = f"#<{number}> will now display any tickets created (once this functionality is implemented)."
             return cEmbed
         case _:
             raise Exception
