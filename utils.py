@@ -57,10 +57,10 @@ class TicketDict():
         if(index > self._counter or index < 0):
             return match_embed(EmbedType.ERR, content="You've tried to display a ticket that doesn't exist.", number=index)
         return match_embed(EmbedType.DISPLAY_ONE,
-         content=self._tickets[index].contents,
-          number=index,
-           author=self._tickets[index].author,
-            status=match_status(self._tickets[index].status))
+        content=self._tickets[index].contents,
+        number=index,
+        author=self._tickets[index].author,
+        status=match_status(self._tickets[index].status))
 
     # Pretty print of currently open tickets, limiting the size of the ticket contents for a preview.
     # MAKE THIS CLEANER WAY OF ADDING TO THE OUTPUT, MAKE "PAGES" OF TICKETS WITH INTERACTIONS?
