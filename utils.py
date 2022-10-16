@@ -26,6 +26,7 @@ class EmbedType(Enum):
     TICKET_CLAIMED = discord.Embed(title="You've claimed the ticket successfully.")
     TICKETS_SAVED = discord.Embed(title="Saved successfully!")
     TICKETS_LOADED = discord.Embed(title="Loaded successfully!")
+    CHANNEL_SET = discord.Embed(title="Channel successfully set!")
 
 
 class TicketDict():
@@ -108,6 +109,12 @@ class TicketDict():
                 continue
         return holder, filename
 
+    # Function to set a channel as admin ticket channel
+    def set_channel(self):
+        #now set the current channel ID as a persistent variable saved for each server
+        #print(f'Admin channel set as #{admin_channel}')
+        return
+
 
     #UTIL FUNCS
 def change_str(fn : str) -> str:
@@ -161,6 +168,10 @@ def match_embed(embed : EmbedType, content : str=None, number : int=None, author
         case EmbedType.TICKETS_LOADED:
             cEmbed = EmbedType.TICKETS_LOADED.value.copy()
             cEmbed.description = "The tickets have loaded successfully, you can now access tickets."
+            return cEmbed
+        case EmbedType.CHANNEL_SET:
+            cEmbed = EmbedType.CHANNEL_SET.value.copy()
+            cEmbed.description = "This channel will now display any tickets created (once this functionality is implemented)."
             return cEmbed
         case _:
             raise Exception

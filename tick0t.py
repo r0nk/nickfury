@@ -8,7 +8,7 @@ TicketHandler = utils.TicketDict(deletion_after_close=False)
 #Load all the commands and information for Discord
 #-------------------------------------------------------------------------------
 
-@tick0t.command(name="create_ticket",description="create a ticket",
+@tick0t.command(name="create_ticket",description="Create a ticket.",
         options = [
         interactions.Option(
             name="name",
@@ -22,7 +22,7 @@ async def create_ticket(ctx,name:str):
     fOutput = TicketHandler.add_ticket(utils.Ticket(name, ctx.author.name))
     await ctx.send(embed=fOutput)
 
-@tick0t.command(name="close_ticket",description="Close a ticket")
+@tick0t.command(name="close_ticket",description="Close a ticket.")
 async def close_ticket(ctx, index:int):
     fOutput = TicketHandler.close_ticket(index)
     await ctx.send(embed=fOutput)
@@ -37,19 +37,24 @@ async def list_tickets(ctx):
     fOutput = TicketHandler.list_tickets()
     await ctx.send(embed=fOutput)
 
-@tick0t.command(name="show_help", description="Display a help message")
+@tick0t.command(name="show_help", description="Display a help message.")
 async def show_help(ctx: interactions.CommandContext):
     await ctx.send("Hello world! Tick0t is a Discord bot designed to help server admins organize any issues that arise in their server.\
     \nIf you need help with commands, click here. ")
 
-@tick0t.command(name="save_tickets",description="Make a backup of tickets")
+@tick0t.command(name="save_tickets",description="Make a backup of tickets.")
 async def save_tickets(ctx):
     fOutput = TicketHandler.save_tickets()
     await ctx.send(embed=fOutput)
 
-@tick0t.command(name="load_tickets",description="Load Tickets from a backup")
+@tick0t.command(name="load_tickets",description="Load Tickets from a backup.")
 async def load_tickets(ctx):
     fOutput = TicketHandler.reload_tickets()
+    await ctx.send(embed=fOutput)
+
+@tick0t.command(name="set_channel",description="Set the current channel as the admin channel where tickets go, so admins can get notified of them.")
+async def set_channel(ctx):
+    fOutput = TicketHandler.set_channel()
     await ctx.send(embed=fOutput)
 
 #-------------------------------------------------------------------------------
