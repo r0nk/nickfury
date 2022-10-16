@@ -16,6 +16,7 @@ class Ticket():
         self.status : bool = TICKET_OPEN
         self.author = ticket_author
 
+# Set default embed titles
 class EmbedType(Enum):
     ERR = discord.Embed(title="Uh oh, something went wrong!")
     DISPLAY_ONE = discord.Embed()
@@ -34,6 +35,7 @@ class TicketDict():
         self._tickets : Dict[int, Ticket] = { }
         self._counter = 0
         self._delete = deletion_after_close
+        self._admin_channel = -1
         #self.reload_tickets() #TODO these break on first load
 
     # Add a ticket, return the ticket number given...
@@ -110,13 +112,14 @@ class TicketDict():
         return holder, filename
 
     # Function to set a channel as admin ticket channel
-    def set_channel(self):
+    def set_channel(self, ctx):
         #now set the current channel ID as a persistent variable saved for each server
-        #print(f'Admin channel set as #{admin_channel}')
-        return
+        self._admin_channel = ctx.channel_id
+        print(f"Admin channel set as #<{self._admin_channel}>")
+        return match_embed(EmbedType.CHANNEL_SET)
 
 
-    #UTIL FUNCS
+#UTIL FUNCS
 def change_str(fn : str) -> str:
     return fn.replace(" ", "_").replace(":", "-")
 
@@ -132,6 +135,8 @@ def match_status(status : bool) -> str:
         case _:
             raise Exception
 
+# This is where you edit the embed outputs
+#-------------------------------------------------------------------------------
 def match_embed(embed : EmbedType, content : str=None, number : int=None, author : str=None, status : str=None) -> discord.Embed:
     match embed:
         case EmbedType.ERR:
@@ -171,10 +176,11 @@ def match_embed(embed : EmbedType, content : str=None, number : int=None, author
             return cEmbed
         case EmbedType.CHANNEL_SET:
             cEmbed = EmbedType.CHANNEL_SET.value.copy()
-            cEmbed.description = "This channel will now display any tickets created (once this functionality is implemented)."
+            #cEmbed.description = f"#<{self._admin-channel}> will now display any tickets created (once this functionality is implemented)."
             return cEmbed
         case _:
             raise Exception
-            
+#-------------------------------------------------------------------------------
+
 def pad_num(num : int) -> str:
     return str(num).zfill(9)
