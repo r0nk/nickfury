@@ -7,6 +7,7 @@ TicketHandler = utils.TicketDict(deletion_after_close=False)
 
 #Load all the commands and information for Discord
 #-------------------------------------------------------------------------------
+
 @tick0t.command(name="create_ticket",description="create a ticket",
         options = [
         interactions.Option(
@@ -50,6 +51,8 @@ async def save_tickets(ctx):
 async def load_tickets(ctx):
     fOutput = TicketHandler.reload_tickets()
     await ctx.send(embed=fOutput)
+
+#-------------------------------------------------------------------------------
 
 tick0t.start()
 

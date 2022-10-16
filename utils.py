@@ -130,13 +130,13 @@ def match_embed(embed : EmbedType, content : str=None, number : int=None, author
         case EmbedType.ERR:
             cEmbed = EmbedType.ERR.value.copy()
             cEmbed.description = content
-            cEmbed.set_footer(text=f"Tick0t 🎟#{pad_num(number)}", icon_url="https://cdn.discordapp.com/avatars/1029789818185584662/8d8b9e1c35c520eefa6e332dfcbb5587.webp?size=160")
+            cEmbed.set_footer(text=f"Tick0t 🎫#{pad_num(number)}", icon_url="https://cdn.discordapp.com/avatars/1029789818185584662/8d8b9e1c35c520eefa6e332dfcbb5587.webp?size=160")
             return cEmbed
         case EmbedType.DISPLAY_ONE:
             cEmbed = EmbedType.DISPLAY_ONE.value.copy()
             cEmbed.description = content + f"\n\n\nThis ticket is currently {status}."
             cEmbed.title = author
-            cEmbed.set_footer(text=f"Tick0t 🎟#{pad_num(number)}", icon_url="https://cdn.discordapp.com/avatars/1029789818185584662/8d8b9e1c35c520eefa6e332dfcbb5587.webp?size=160")
+            cEmbed.set_footer(text=f"Tick0t 🎫#{pad_num(number)}", icon_url="https://cdn.discordapp.com/avatars/1029789818185584662/8d8b9e1c35c520eefa6e332dfcbb5587.webp?size=160")
             return cEmbed
         case EmbedType.DISPLAY_ALL:
             cEmbed = EmbedType.DISPLAY_ALL.value.copy()
