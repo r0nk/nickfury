@@ -34,7 +34,7 @@ class TicketDict():
         self._tickets : Dict[int, Ticket] = { }
         self._counter = 0
         self._delete = deletion_after_close
-        #self.reload_tickets() #TODO these break on first load
+        self.reload_tickets()
 
     # Add a ticket, return the ticket number given...
     def add_ticket(self, ticket : Ticket) -> int:
