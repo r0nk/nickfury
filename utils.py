@@ -84,8 +84,8 @@ class TicketDict():
     # Reload tickets from last saved instance
     def reload_tickets(self) -> str:
         holder, filename = self.determine_latest()
-        assert holder != None # Change and handle this gracefully...
-        assert filename != None
+        if holder == None | filename == None:
+            return match_embed(EmbedType.ERR, "There is no stored tickets on disk to reload from.")
         try:
             lTicketDict = pickle.load(open("db\\" + filename, "rb"))
         except EOFError:
